@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:sporthub/common/color_extension.dart';
 import 'package:sporthub/common/round_button.dart';
+import 'package:sporthub/view/login/login_screen.dart';
+import 'package:sporthub/view/login/signup_screen.dart';
 
 class OnBoardingView extends StatefulWidget {
   const OnBoardingView({super.key});
@@ -14,18 +16,18 @@ class _OnBoardingViewState extends State<OnBoardingView> {
   int selectPage = 0;
   List pageArr = [
     {
-      "title": "SportHub",
+      "title": "No More Reason",
       "subtitle": "Exercise anytime, \nanywhere.",
       "image": "assets/img/icon push up.png"
     },
     {
-      "title": "SportHub",
+      "title": "Keep Your Own Taste",
       "subtitle": "Build your own routine workout, just at home.",
       "image": "assets/img/icon senam.png"
     },
     {
-      "title": "SportHub",
-      "subtitle": "Stay fit with Us!",
+      "title": "Make Your Body Fit",
+      "subtitle": "Stay fit with us!",
       "image": "assets/img/icon sit up.png"
     },
   ];
@@ -69,10 +71,11 @@ class _OnBoardingViewState extends State<OnBoardingView> {
                   ),
                   Text(
                     pObj["title"].toString(),
+                    textAlign: TextAlign.center,
                     style: TextStyle(
                         color: TColor.primaryText,
-                        fontSize: 40,
-                        fontWeight: FontWeight.w800),
+                        fontSize: 35,
+                        fontWeight: FontWeight.w900),
                   ),
                   const SizedBox(
                     height: 50,
@@ -84,14 +87,14 @@ class _OnBoardingViewState extends State<OnBoardingView> {
                     fit: BoxFit.contain,
                   ),
                   const SizedBox(
-                    height: 100,
+                    height: 50,
                   ),
                   Text(
                     pObj["subtitle"].toString(),
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         color: TColor.white,
-                        fontSize: 30,
+                        fontSize: 25,
                         fontWeight: FontWeight.w800),
                   ),
                 ]);
@@ -107,7 +110,8 @@ class _OnBoardingViewState extends State<OnBoardingView> {
                   children: pageArr.map((pObj) {
                     var index = pageArr.indexOf(pObj);
                     return Container(
-                      margin: const EdgeInsets.symmetric(horizontal: 10),
+                      margin: const EdgeInsets.symmetric(
+                          horizontal: 10, vertical: 40),
                       width: 12,
                       height: 12,
                       decoration: BoxDecoration(
@@ -120,10 +124,30 @@ class _OnBoardingViewState extends State<OnBoardingView> {
                 ),
                 Padding(
                   padding:
-                      const EdgeInsets.symmetric(vertical: 20, horizontal: 25),
+                      const EdgeInsets.symmetric(vertical: 10, horizontal: 25),
                   child: RoundButton(
-                    title: "Start",
-                    onPressed: () {},
+                    title: "Login",
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const LoginScreen()),
+                      );
+                    },
+                  ),
+                ),
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 10, horizontal: 25),
+                  child: RoundButton(
+                    title: "Sign Up",
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const SignupScreen()),
+                      );
+                    },
                   ),
                 ),
                 SizedBox(
