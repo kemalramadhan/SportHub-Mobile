@@ -6,10 +6,11 @@ Widget buildSignupButton() {
     padding: const EdgeInsets.symmetric(vertical: 25, horizontal: 20),
     width: double.infinity,
     child: ElevatedButton(
-      onPressed: () => print("Signup Pressed"), // Perbaikan fungsi onPressed
+      onPressed: () => print("Signup Pressed"),
       style: ElevatedButton.styleFrom(
-        elevation: 5, backgroundColor: TColor.white,
-        padding: const EdgeInsets.all(15), // Padding diletakkan di sini
+        elevation: 10,
+        backgroundColor: TColor.white,
+        padding: const EdgeInsets.all(15),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),
         ),

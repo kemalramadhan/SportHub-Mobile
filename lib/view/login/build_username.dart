@@ -35,7 +35,7 @@ Widget buildUsername() {
           height: 60,
           child: const TextField(
             // keyboardType: TextInputType.visiblePassword,
-            obscureText: true,
+            obscureText: false,
             style: TextStyle(color: Colors.black87),
             decoration: InputDecoration(
               border: InputBorder.none,
