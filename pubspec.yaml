@@ -33,7 +33,7 @@ dependencies:
   flutter_svg: ^2.0.10+1
   flutter_native_splash: ^2.3.10
   cloud_firestore: ^4.15.6
-  firebase_core: ^2.25.5
+  firebase_core: ^2.26.0
 
 
 flutter_native_splash:
