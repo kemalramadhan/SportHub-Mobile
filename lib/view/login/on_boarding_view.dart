@@ -152,7 +152,7 @@ class _OnBoardingViewState extends State<OnBoardingView> {
                 ),
                 SizedBox(
                   height: media.width * 0.07,
-                )
+                ),
               ],
             ),
           )

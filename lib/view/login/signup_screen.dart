@@ -1,13 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:sporthub/common/color_extension.dart';
+import 'package:sporthub/firebase_auth_implementation/firebase_auth_services.dart';
 import 'package:sporthub/view/login/build_email.dart';
 import 'package:sporthub/view/login/build_password.dart';
 import 'package:sporthub/view/login/build_signup_button.dart';
 import 'package:sporthub/view/login/build_username.dart';
 
-class SignupScreen extends StatelessWidget {
+class SignupScreen extends StatefulWidget {
   const SignupScreen({Key? key}) : super(key: key);
 
+  @override
+  State<SignupScreen> createState() => _SignupScreenState();
+}
+
+class _SignupScreenState extends State<SignupScreen> {
   @override
   Widget build(BuildContext context) {
     var media = MediaQuery.of(context);
@@ -26,7 +32,7 @@ class SignupScreen extends StatelessWidget {
             ),
             Center(
               child: SingleChildScrollView(
-                physics: BouncingScrollPhysics(),
+                physics: const BouncingScrollPhysics(),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -65,7 +71,7 @@ class SignupScreen extends StatelessWidget {
                     const SizedBox(height: 10),
                     buildPassword(),
                     const SizedBox(height: 30),
-                    buildSignupButton(),
+                    buildSignupButton(context),
                   ],
                 ),
               ),

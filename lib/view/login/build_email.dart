@@ -33,10 +33,10 @@ Widget buildEmail() {
             ],
           ),
           height: 60,
-          child: const TextField(
+          child: TextField(
             keyboardType: TextInputType.visiblePassword,
-            style: TextStyle(color: Colors.black87),
-            decoration: InputDecoration(
+            style: const TextStyle(color: Colors.black87),
+            decoration: const InputDecoration(
               border: InputBorder.none,
               contentPadding: EdgeInsets.only(top: 14),
               prefixIcon: Icon(
