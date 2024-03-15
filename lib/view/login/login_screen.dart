@@ -76,7 +76,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   const SizedBox(height: 10),
                   buildPassword(),
                   const SizedBox(height: 30),
-                  buildLoginBtn(),
+                  buildLoginBtn(context),
                 ],
               )
             ],

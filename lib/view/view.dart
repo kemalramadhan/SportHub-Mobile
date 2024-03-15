@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:sporthub/common/color_extension.dart';
 import 'package:sporthub/view/home/home_page.dart';
+import 'package:sporthub/view/profile/profile.dart';
+import 'package:sporthub/view/report/report.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({Key? key});
@@ -13,10 +14,10 @@ class HomeView extends StatefulWidget {
 class _HomeViewState extends State<HomeView> {
   int _selectedIndex = 0;
 
-  static List<Widget> _widgetOptions = <Widget>[
-    homePage(),
-    Text('Search Page'),
-    Text('Profile Page'),
+  static final List<Widget> _widgetOptions = <Widget>[
+    const homePage(),
+    const reportPage(),
+    const ProfilePage(),
   ];
 
   void _onItemTapped(int index) {
@@ -29,17 +30,17 @@ class _HomeViewState extends State<HomeView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: TColor.blue,
+        backgroundColor: TColor.primary,
         elevation: 0,
         title: Padding(
-          padding: EdgeInsets.only(left: 5, top: 10),
+          padding: const EdgeInsets.only(left: 5, top: 10),
           child: Text(
             "SportHub",
             style: TextStyle(
               fontFamily: 'Quicksand',
-              fontSize: 30,
+              fontSize: 29,
               fontWeight: FontWeight.w900,
-              color: TColor.primary,
+              color: TColor.white,
             ),
           ),
         ),
@@ -48,11 +49,11 @@ class _HomeViewState extends State<HomeView> {
           Padding(
             padding: const EdgeInsets.only(right: 20, top: 10),
             child: Container(
-              decoration: BoxDecoration(
-                  color: Color.fromARGB(255, 229, 229, 229),
+              decoration: const BoxDecoration(
+                  color: Color.fromARGB(255, 255, 255, 255),
                   shape: BoxShape.circle),
               child: const Padding(
-                padding: EdgeInsets.all(7.0),
+                padding: EdgeInsets.all(4.0),
                 child: Icon(
                   Icons.notifications,
                   color: Color.fromARGB(255, 252, 163, 17),
@@ -64,23 +65,29 @@ class _HomeViewState extends State<HomeView> {
       ),
       body: _widgetOptions[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: TColor.primary,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+            icon: Icon(Icons.home_rounded),
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.search),
-            label: 'Search',
+            icon: Icon(Icons.auto_graph_rounded),
+            label: 'Report',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Profile',
+            icon: Icon(Icons.settings),
+            label: 'Setting',
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: TColor.primary,
+        selectedItemColor: TColor.white,
+        unselectedItemColor: TColor.white,
         onTap: _onItemTapped,
+        selectedLabelStyle: const TextStyle(
+            fontFamily: 'Quicksand', fontWeight: FontWeight.bold),
+        unselectedLabelStyle: const TextStyle(
+            fontFamily: 'Quicksand', fontWeight: FontWeight.bold),
       ),
     );
   }

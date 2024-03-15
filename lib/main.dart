@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:sporthub/view/login/on_boarding_view.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'firebase_options.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,7 +16,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         fontFamily: "Quicksand",
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme:
+            ColorScheme.fromSeed(seedColor: Color.fromRGBO(252, 163, 17, 255)),
         useMaterial3: false,
       ),
       home: const OnBoardingView(),

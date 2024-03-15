@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:sporthub/common/color_extension.dart';
-import 'package:sporthub/firebase_auth_implementation/firebase_auth_services.dart';
 import 'package:sporthub/view/login/build_email.dart';
 import 'package:sporthub/view/login/build_password.dart';
 import 'package:sporthub/view/login/build_signup_button.dart';
