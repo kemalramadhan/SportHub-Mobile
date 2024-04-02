@@ -7,17 +7,7 @@ class reportPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final Size media = MediaQuery.of(context).size;
     return Scaffold(
-      body: Stack(
-        children: [
-          Image.asset(
-            "assets/img/on_boarding_view.png",
-            width: media.width,
-            height: media.height,
-            fit: BoxFit.cover,
-          ),
-          const SingleChildScrollView(),
-        ],
-      ),
+      body: Stack(),
     );
   }
 }

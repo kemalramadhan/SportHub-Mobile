@@ -1,5 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:sporthub/common/color_extension.dart';
 
 class homePage extends StatelessWidget {
@@ -11,18 +13,18 @@ class homePage extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: [
-          Image.asset(
-            "assets/img/on_boarding_view.png",
-            width: media.width,
-            height: media.height,
-            fit: BoxFit.cover,
-          ),
+          // Image.asset(
+          //   "assets/img/on_boarding_view.png",
+          //   width: media.width,
+          //   height: media.height,
+          //   fit: BoxFit.cover,
+          // ),
           SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Padding(
-                  padding: EdgeInsets.only(left: 30, top: 30, right: 10),
+                  padding: EdgeInsets.only(left: 30, top: 0, right: 10),
                   child: Row(
                     children: [
                       CircleAvatar(
@@ -44,7 +46,7 @@ class homePage extends StatelessWidget {
                                   const TextSpan(
                                     text: "Welcome Back!\n",
                                     style: TextStyle(
-                                      fontWeight: FontWeight.w500,
+                                      fontWeight: FontWeight.w600,
                                       fontSize: 15,
                                       fontFamily: 'Quicksand',
                                     ),
@@ -80,7 +82,7 @@ class homePage extends StatelessWidget {
                   height: 0,
                 ),
                 const Padding(
-                  padding: EdgeInsets.all(25),
+                  padding: EdgeInsets.all(15),
                   child: Text(
                     "Categories",
                     style: TextStyle(
@@ -101,106 +103,199 @@ class homePage extends StatelessWidget {
                     viewportFraction: 0.8,
                   ),
                   items: [
-                    Container(
-                      margin: EdgeInsets.all(5.0),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20.0),
-                        image: DecorationImage(
-                          image: AssetImage('assets/img/abs.jpg'),
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                      child: Align(
-                        alignment: Alignment.bottomLeft,
-                        child: Padding(
-                          padding: const EdgeInsets.all(20.0),
-                          child: Text(
-                            "Abs",
-                            style: TextStyle(
-                              fontFamily: "Quicksand",
-                              fontSize: 20,
-                              fontWeight: FontWeight.w600,
-                              color: TColor.white,
-                              shadows: [
-                                Shadow(
-                                  blurRadius: 10.0,
-                                  color: Colors.black.withOpacity(1),
-                                  offset: Offset(0, 3),
+                    Stack(
+                      children: [
+                        Container(
+                          margin: EdgeInsets.all(5.0),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20.0),
+                            image: DecorationImage(
+                              image: AssetImage('assets/img/abs.jpg'),
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                          child: Align(
+                            alignment: Alignment.bottomLeft,
+                            child: Padding(
+                              padding: const EdgeInsets.all(20.0),
+                              child: Text(
+                                "Abs",
+                                style: TextStyle(
+                                  fontFamily: "Quicksand",
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w600,
+                                  color: TColor.white,
+                                  shadows: [
+                                    Shadow(
+                                      blurRadius: 10.0,
+                                      color: Colors.black.withOpacity(1),
+                                      offset: Offset(0, 3),
+                                    ),
+                                  ],
                                 ),
-                              ],
+                              ),
                             ),
                           ),
                         ),
-                      ),
+                        // see more button
+                        Positioned(
+                          right: 15,
+                          bottom: 10,
+                          child: TextButton(
+                            style: TextButton.styleFrom(
+                              backgroundColor: TColor.primary,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 15, vertical: 0),
+                            ),
+                            onPressed: () {
+                              // Add your on-pressed action here
+                            },
+                            child: Text(
+                              "See More",
+                              style: TextStyle(
+                                color: TColor.primaryText,
+                                fontWeight: FontWeight.w700,
+                                fontFamily: 'Quicksand',
+                                fontSize: 13,
+                              ),
+                            ),
+                          ),
+                        )
+                      ],
                     ),
-                    Container(
-                      margin: EdgeInsets.all(5.0),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20.0),
-                        image: DecorationImage(
-                          image: AssetImage('assets/img/arm.jpg'),
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                      child: Align(
-                        alignment: Alignment.bottomLeft,
-                        child: Padding(
-                          padding: const EdgeInsets.all(20.0),
-                          child: Text(
-                            "Arm",
-                            style: TextStyle(
-                              fontFamily: "Quicksand",
-                              fontSize: 20,
-                              fontWeight: FontWeight.w600,
-                              color: TColor.white,
-                              shadows: [
-                                Shadow(
-                                  blurRadius: 10.0,
-                                  color: Colors.black.withOpacity(1),
-                                  offset: Offset(0, 3),
+                    Stack(
+                      children: [
+                        Container(
+                          margin: EdgeInsets.all(5.0),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20.0),
+                            image: DecorationImage(
+                              image: AssetImage('assets/img/arm.jpg'),
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                          child: Align(
+                            alignment: Alignment.bottomLeft,
+                            child: Padding(
+                              padding: const EdgeInsets.all(20.0),
+                              child: Text(
+                                "Arm",
+                                style: TextStyle(
+                                  fontFamily: "Quicksand",
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w600,
+                                  color: TColor.white,
+                                  shadows: [
+                                    Shadow(
+                                      blurRadius: 10.0,
+                                      color: Colors.black.withOpacity(1),
+                                      offset: Offset(0, 3),
+                                    ),
+                                  ],
                                 ),
-                              ],
+                              ),
                             ),
                           ),
                         ),
-                      ),
+                        // see more button
+                        Positioned(
+                          right: 15,
+                          bottom: 10,
+                          child: TextButton(
+                            style: TextButton.styleFrom(
+                              backgroundColor: TColor.primary,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 15, vertical: 0),
+                            ),
+                            onPressed: () {
+                              // Add your on-pressed action here
+                            },
+                            child: Text(
+                              "See More",
+                              style: TextStyle(
+                                color: TColor.primaryText,
+                                fontWeight: FontWeight.w700,
+                                fontFamily: 'Quicksand',
+                                fontSize: 13,
+                              ),
+                            ),
+                          ),
+                        )
+                      ],
                     ),
-                    Container(
-                      margin: EdgeInsets.all(5.0),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20.0),
-                        image: DecorationImage(
-                          image: AssetImage('assets/img/leg.jpg'),
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                      child: Align(
-                        alignment: Alignment.bottomLeft,
-                        child: Padding(
-                          padding: const EdgeInsets.all(20.0),
-                          child: Text(
-                            "Leg",
-                            style: TextStyle(
-                              fontFamily: "Quicksand",
-                              fontSize: 20,
-                              fontWeight: FontWeight.w600,
-                              color: TColor.white,
-                              shadows: [
-                                Shadow(
-                                  blurRadius: 10.0,
-                                  color: Colors.black.withOpacity(1),
-                                  offset: Offset(0, 3),
+                    Stack(
+                      children: [
+                        Container(
+                          margin: EdgeInsets.all(5.0),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20.0),
+                            image: DecorationImage(
+                              image: AssetImage('assets/img/leg.jpg'),
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                          child: Align(
+                            alignment: Alignment.bottomLeft,
+                            child: Padding(
+                              padding: const EdgeInsets.all(20.0),
+                              child: Text(
+                                "Leg",
+                                style: TextStyle(
+                                  fontFamily: "Quicksand",
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w600,
+                                  color: TColor.white,
+                                  shadows: [
+                                    Shadow(
+                                      blurRadius: 10.0,
+                                      color: Colors.black.withOpacity(1),
+                                      offset: Offset(0, 3),
+                                    ),
+                                  ],
                                 ),
-                              ],
+                              ),
                             ),
                           ),
                         ),
-                      ),
+                        // see more button
+                        Positioned(
+                          right: 15,
+                          bottom: 10,
+                          child: TextButton(
+                            style: TextButton.styleFrom(
+                              backgroundColor: TColor.primary,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 15, vertical: 0),
+                            ),
+                            onPressed: () {
+                              // Add your on-pressed action here
+                            },
+                            child: Text(
+                              "See More",
+                              style: TextStyle(
+                                color: TColor.primaryText,
+                                fontWeight: FontWeight.w700,
+                                fontFamily: 'Quicksand',
+                                fontSize: 13,
+                              ),
+                            ),
+                          ),
+                        )
+                      ],
                     ),
                   ],
                 ),
                 const Padding(
-                  padding: EdgeInsets.all(25),
+                  padding: EdgeInsets.all(15),
                   child: Text(
                     "Previous Workout",
                     style: TextStyle(
@@ -251,19 +346,31 @@ class homePage extends StatelessWidget {
                             ),
                           ),
                         ),
-
-                        // Tombol di atas gambar
+                        // see more button
                         Positioned(
-                          right: 10, // Atur posisi horizontal dari kanan
-                          top: 10, // Atur posisi vertikal dari atas
-                          child: IconButton(
-                            icon: Icon(Icons.edit,
-                                color: Colors
-                                    .white), // Ganti dengan icon yang diinginkan
+                          right: 15,
+                          bottom: 10,
+                          child: TextButton(
+                            style: TextButton.styleFrom(
+                              backgroundColor: TColor.primary,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 15, vertical: 0),
+                            ),
                             onPressed: () {
-                              // Aksi ketika tombol ditekan
-                              print("Edit button tapped");
+                              // Add your on-pressed action here
                             },
+                            child: Text(
+                              "See More",
+                              style: TextStyle(
+                                color: TColor.primaryText,
+                                fontWeight: FontWeight.w700,
+                                fontFamily: 'Quicksand',
+                                fontSize: 13,
+                              ),
+                            ),
                           ),
                         ),
                       ],

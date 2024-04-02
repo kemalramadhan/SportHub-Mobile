@@ -1,8 +1,11 @@
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:sporthub/common/color_extension.dart';
+import 'package:sporthub/customShapeAppBar.dart';
 import 'package:sporthub/view/home/home_page.dart';
 import 'package:sporthub/view/profile/profile.dart';
 import 'package:sporthub/view/report/report.dart';
+import 'package:sporthub/view/workout/workout.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({Key? key});
@@ -16,6 +19,7 @@ class _HomeViewState extends State<HomeView> {
 
   static final List<Widget> _widgetOptions = <Widget>[
     const homePage(),
+    const workoutPage(),
     const reportPage(),
     const ProfilePage(),
   ];
@@ -30,64 +34,43 @@ class _HomeViewState extends State<HomeView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: TColor.primary,
+        toolbarHeight: 100,
+        backgroundColor: Colors.transparent,
         elevation: 0,
-        title: Padding(
-          padding: const EdgeInsets.only(left: 5, top: 10),
-          child: Text(
-            "SportHub",
-            style: TextStyle(
-              fontFamily: 'Quicksand',
-              fontSize: 29,
-              fontWeight: FontWeight.w900,
-              color: TColor.white,
-            ),
-          ),
-        ),
-        automaticallyImplyLeading: false,
-        actions: <Widget>[
-          Padding(
-            padding: const EdgeInsets.only(right: 20, top: 10),
-            child: Container(
-              decoration: const BoxDecoration(
-                  color: Color.fromARGB(255, 255, 255, 255),
-                  shape: BoxShape.circle),
-              child: const Padding(
-                padding: EdgeInsets.all(4.0),
-                child: Icon(
-                  Icons.notifications,
-                  color: Color.fromARGB(255, 252, 163, 17),
+        flexibleSpace: ClipPath(
+          clipper: CustomShapeAppBar(),
+          child: Container(
+            height: 250,
+            width: MediaQuery.of(context).size.width,
+            color: TColor.primary,
+            child: Center(
+              child: Text(
+                "SportHub",
+                style: TextStyle(
+                  fontFamily: 'Quicksand',
+                  fontSize: 29,
+                  fontWeight: FontWeight.w900,
+                  color: TColor.white,
                 ),
               ),
             ),
           ),
-        ],
+        ),
+        automaticallyImplyLeading: false,
       ),
       body: _widgetOptions[_selectedIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: TColor.primary,
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home_rounded),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.auto_graph_rounded),
-            label: 'Report',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: 'Setting',
-          ),
+      bottomNavigationBar: CurvedNavigationBar(
+        backgroundColor: Colors.transparent,
+        animationCurve: Curves.fastOutSlowIn,
+        animationDuration: Duration(milliseconds: 600),
+        color: TColor.primary,
+        items: [
+          Icon(Icons.home_rounded),
+          Icon(Icons.sports_gymnastics_outlined),
+          Icon(Icons.auto_graph_rounded),
+          Icon(Icons.settings),
         ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: TColor.white,
-        unselectedItemColor: TColor.white,
         onTap: _onItemTapped,
-        selectedLabelStyle: const TextStyle(
-            fontFamily: 'Quicksand', fontWeight: FontWeight.bold),
-        unselectedLabelStyle: const TextStyle(
-            fontFamily: 'Quicksand', fontWeight: FontWeight.bold),
       ),
     );
   }
