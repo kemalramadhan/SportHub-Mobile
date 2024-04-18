@@ -1,5 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:sporthub/common/color_extension.dart';
+import 'package:sporthub/view/login/on_boarding_view.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({Key? key}) : super(key: key);
@@ -7,6 +9,7 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final media = MediaQuery.of(context).size;
+    final user = FirebaseAuth.instance.currentUser!;
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -51,7 +54,7 @@ class ProfilePage extends StatelessWidget {
                     ),
                     SizedBox(height: 0), // Memberi jarak antara foto dan nama
                     Text(
-                      "aderai123@gmail.com", // Ganti dengan nama pengguna yang sesuai
+                      user.email!, // Ganti dengan nama pengguna yang sesuai
                       style: TextStyle(
                         fontSize: 20.0, // Atur ukuran teks
                         fontWeight: FontWeight.w500, // Atur ketebalan teks
@@ -279,8 +282,13 @@ class ProfilePage extends StatelessWidget {
                               size: 30,
                             ),
                             onPressed: () {
+                              Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const OnBoardingView()));
                               // Aksi ketika tombol ditekan
-                              print("Edit button tapped");
+                              FirebaseAuth.instance.signOut();
                             },
                           ),
                         )

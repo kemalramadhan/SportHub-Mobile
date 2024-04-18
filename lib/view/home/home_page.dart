@@ -1,11 +1,20 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:sporthub/common/color_extension.dart';
 
-class homePage extends StatelessWidget {
-  const homePage({Key? key});
+class homePage extends StatefulWidget {
+  const homePage({Key? key}) : super(key: key);
+
+  @override
+  State<homePage> createState() => homePageState();
+}
+
+class homePageState extends State<homePage> {
+  final user = FirebaseAuth.instance.currentUser!;
+  // const homePageState({Key? key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +32,7 @@ class homePage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
+                // Text(P.email ?? "gaada email"),
                 Padding(
                   padding: EdgeInsets.only(left: 30, top: 0, right: 10),
                   child: Row(
@@ -31,11 +41,28 @@ class homePage extends StatelessWidget {
                         radius: 35,
                         backgroundImage: AssetImage("assets/img/ade rai.jpeg"),
                       ),
+                      // Column(
+                      //   children: [
+                      //     Text("Signed in as " + user.email!),
+                      //   ],
+                      // ),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
-                            padding: const EdgeInsets.all(20),
+                            padding: const EdgeInsets.only(left: 20, bottom: 3),
+                            child: Text(
+                              user.email!,
+                              style: TextStyle(
+                                fontWeight: FontWeight.w600,
+                                fontSize: 15,
+                                fontFamily: 'Quicksand',
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(
+                                left: 20, bottom: 0, right: 0, top: 0),
                             child: RichText(
                               text: TextSpan(
                                 style: TextStyle(
@@ -43,16 +70,8 @@ class homePage extends StatelessWidget {
                                   color: Colors.black,
                                 ),
                                 children: [
-                                  const TextSpan(
-                                    text: "Welcome Back!\n",
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 15,
-                                      fontFamily: 'Quicksand',
-                                    ),
-                                  ),
                                   TextSpan(
-                                    text: "BUDIMAN",
+                                    text: "Welcome Back!",
                                     style: TextStyle(
                                       fontSize: 25,
                                       color: Colors.black,
@@ -66,15 +85,15 @@ class homePage extends StatelessWidget {
                           ),
                         ],
                       ),
-                      const SizedBox(
-                        width: 50,
-                      ),
-                      IconButton(
-                        onPressed: () {},
-                        icon: const Icon(Icons.keyboard_arrow_right_rounded),
-                        color: Colors.black,
-                        iconSize: 50,
-                      ),
+                      // const SizedBox(
+                      //   width: 50,
+                      // ),
+                      // IconButton(
+                      //   onPressed: () {},
+                      //   icon: const Icon(Icons.keyboard_arrow_right_rounded),
+                      //   color: Colors.black,
+                      //   iconSize: 50,
+                      // ),
                     ],
                   ),
                 ),

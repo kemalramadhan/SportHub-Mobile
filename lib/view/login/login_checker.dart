@@ -3,6 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sporthub/view/home/home_page.dart';
 import 'package:sporthub/view/login/login_screen.dart';
+import 'package:sporthub/view/login/on_boarding_view.dart';
+import 'package:sporthub/view/view.dart';
 
 class LoginChecker extends StatelessWidget {
   const LoginChecker({Key? key}) : super(key: key);
@@ -14,9 +16,10 @@ class LoginChecker extends StatelessWidget {
           stream: FirebaseAuth.instance.authStateChanges(),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
-              return homePage();
+              return HomeView();
             } else {
-              return LoginScreen();
+              // return LoginScreen();
+              return OnBoardingView();
             }
           }),
     );

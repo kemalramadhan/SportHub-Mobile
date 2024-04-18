@@ -2,9 +2,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sporthub/common/color_extension.dart';
+import 'package:sporthub/view/home/home_page.dart';
 import 'package:sporthub/view/login/build_email.dart';
 import 'package:sporthub/view/login/build_login_button.dart';
 import 'package:sporthub/view/login/build_password.dart';
+import 'package:sporthub/view/login/login_checker.dart';
 import 'package:sporthub/view/view.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -192,17 +194,18 @@ class _LoginScreenState extends State<LoginScreen> {
                   const SizedBox(height: 30),
                   // build login button
                   GestureDetector(
-                    onTap: signIn,
+                    // onTap: signIn,
                     child: Container(
                       padding: const EdgeInsets.symmetric(
                           vertical: 25, horizontal: 20),
                       width: double.infinity,
                       child: ElevatedButton(
-                        onPressed: () {
+                        onPressed: () async {
                           // Gunakan Navigator dengan context yang diterima dari parameter
+                          await signIn();
                           Navigator.of(context).pushReplacement(
                               MaterialPageRoute(
-                                  builder: (context) => const HomeView()));
+                                  builder: (context) => const LoginChecker()));
                         },
                         style: ElevatedButton.styleFrom(
                           elevation: 10,
