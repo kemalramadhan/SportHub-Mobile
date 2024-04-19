@@ -2,12 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sporthub/common/color_extension.dart';
-import 'package:sporthub/view/home/home_page.dart';
-import 'package:sporthub/view/login/build_email.dart';
-import 'package:sporthub/view/login/build_login_button.dart';
-import 'package:sporthub/view/login/build_password.dart';
 import 'package:sporthub/view/login/login_checker.dart';
-import 'package:sporthub/view/view.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);

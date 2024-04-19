@@ -48,7 +48,7 @@ class _OnBoardingViewState extends State<OnBoardingView> {
   Widget build(BuildContext context) {
     var media = MediaQuery.sizeOf(context);
     return Scaffold(
-      backgroundColor: TColor.periwinkle,
+      backgroundColor: TColor.primary,
       body: Stack(
         children: [
           Image.asset(
@@ -145,7 +145,7 @@ class _OnBoardingViewState extends State<OnBoardingView> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const SignupScreen()),
+                            builder: (context) => const signUpScreen()),
                       );
                     },
                   ),

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sporthub/firebase_options.dart';
 import 'package:sporthub/view/login/login_checker.dart';
-import 'package:sporthub/view/login/on_boarding_view.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 void main() async {
