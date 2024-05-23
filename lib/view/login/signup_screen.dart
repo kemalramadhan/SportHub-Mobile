@@ -1,8 +1,10 @@
+import 'dart:async';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:sporthub/common/color_extension.dart';
+import 'package:sporthub/service/firestore.dart';
 import 'package:sporthub/view/login/signup_checker.dart';
 
 class signUpScreen extends StatefulWidget {
@@ -14,17 +16,51 @@ class signUpScreen extends StatefulWidget {
 
 // ignore: camel_case_types
 class signUpScreenState extends State<signUpScreen> {
+  final FirestoreProfile firestoreProfile = FirestoreProfile();
+
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _confirmPasswordController =
       TextEditingController();
+  final TextEditingController _firstNameController = TextEditingController();
+  final TextEditingController _lastNameController = TextEditingController();
 
-  Future signUp() async {
+  // create a user document and collect them in firestore
+  Future<void> createUserDocument(UserCredential userCredential) async {
+    User? user = userCredential.user;
+    if (user != null) {
+      await FirebaseFirestore.instance.collection('users').doc(user.email).set({
+        'uid': user.uid, // Menyimpan UID pengguna
+        'email': user.email, // Menyimpan email pengguna
+        'first name':
+            _firstNameController.text, // Menyimpan nama depan pengguna
+        'last name':
+            _lastNameController.text, // Menyimpan nama belakang pengguna
+      });
+    }
+  }
+
+  Future<void> signUp() async {
     if (passwordConfirmed()) {
-      await FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email: _emailController.text.trim(),
-        password: _passwordController.text.trim(),
-      );
+      try {
+        // Mendaftarkan pengguna dengan email dan password
+        UserCredential userCredential =
+            await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: _emailController.text,
+          password: _passwordController.text,
+        );
+
+        // Membuat dokumen pengguna dan menambahkannya ke Firestore
+        await createUserDocument(userCredential);
+      } on FirebaseAuthException catch (e) {
+        // Menangani kesalahan saat pembuatan akun
+        ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('Gagal mendaftar: ${e.message}')));
+      }
+    } else {
+      // Menampilkan pesan kesalahan jika konfirmasi password tidak cocok
+      ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Konfirmasi password tidak cocok')));
     }
   }
 
@@ -41,6 +77,8 @@ class signUpScreenState extends State<signUpScreen> {
   void dispose() {
     _emailController.dispose();
     _passwordController.dispose();
+    _firstNameController.dispose();
+    _lastNameController.dispose();
     super.dispose();
   }
 
@@ -96,6 +134,118 @@ class signUpScreenState extends State<signUpScreen> {
                         ),
                       ),
                       const SizedBox(height: 30),
+
+                      // build first name text field
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(
+                                left: 20,
+                                right: 20), // Atur jarak dari kiri dan kanan
+                            child: Text(
+                              "First Name",
+                              style: TextStyle(
+                                  color: TColor.primaryText,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          const SizedBox(height: 10),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 20),
+                            child: Container(
+                              alignment: Alignment.centerLeft,
+                              decoration: BoxDecoration(
+                                color: TColor.white,
+                                borderRadius: BorderRadius.circular(20),
+                                boxShadow: const [
+                                  BoxShadow(
+                                    color: Colors.black26,
+                                    blurRadius: 6,
+                                    offset: Offset(0, 6),
+                                  ),
+                                ],
+                              ),
+                              height: 60,
+                              // ignore: prefer_const_constructors
+                              child: TextField(
+                                controller: _firstNameController,
+                                keyboardType: TextInputType.visiblePassword,
+                                style: const TextStyle(color: Colors.black87),
+                                decoration: const InputDecoration(
+                                  border: InputBorder.none,
+                                  contentPadding: EdgeInsets.only(top: 14),
+                                  prefixIcon: Icon(
+                                    Icons.person_2_rounded,
+                                    color: Color(0xffFCA311),
+                                  ),
+                                  hintText: "Enter your first name",
+                                  hintStyle: TextStyle(color: Colors.black38),
+                                ),
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                      const SizedBox(height: 10),
+
+                      // build last name text field
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(
+                                left: 20,
+                                right: 20), // Atur jarak dari kiri dan kanan
+                            child: Text(
+                              "Last Name",
+                              style: TextStyle(
+                                  color: TColor.primaryText,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          const SizedBox(height: 10),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 20),
+                            child: Container(
+                              alignment: Alignment.centerLeft,
+                              decoration: BoxDecoration(
+                                color: TColor.white,
+                                borderRadius: BorderRadius.circular(20),
+                                boxShadow: const [
+                                  BoxShadow(
+                                    color: Colors.black26,
+                                    blurRadius: 6,
+                                    offset: Offset(0, 6),
+                                  ),
+                                ],
+                              ),
+                              height: 60,
+                              // ignore: prefer_const_constructors
+                              child: TextField(
+                                controller: _lastNameController,
+                                keyboardType: TextInputType.visiblePassword,
+                                style: const TextStyle(color: Colors.black87),
+                                decoration: const InputDecoration(
+                                  border: InputBorder.none,
+                                  contentPadding: EdgeInsets.only(top: 14),
+                                  prefixIcon: Icon(
+                                    Icons.person_2_rounded,
+                                    color: Color(0xffFCA311),
+                                  ),
+                                  hintText: "Enter your last name",
+                                  hintStyle: TextStyle(color: Colors.black38),
+                                ),
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                      const SizedBox(height: 10),
 
                       // build email text field
                       Column(

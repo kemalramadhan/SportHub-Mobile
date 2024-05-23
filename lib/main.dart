@@ -26,7 +26,6 @@ class MyApp extends StatelessWidget {
             ColorScheme.fromSeed(seedColor: Color.fromRGBO(252, 163, 17, 255)),
         useMaterial3: false,
       ),
-      // home: const OnBoardingView(),
       home: const LoginChecker(),
     );
   }

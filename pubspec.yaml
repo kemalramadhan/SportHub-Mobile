@@ -32,13 +32,15 @@ dependencies:
     sdk: flutter
   flutter_svg: ^2.0.10+1
   flutter_native_splash: ^2.3.10
-  cloud_firestore: ^4.15.7
   firebase_core: ^2.29.0
   firebase_auth: ^4.17.7
   provider: ^6.1.2
   firebase_ui_auth: ^1.13.1
   carousel_slider: ^4.2.1
   curved_navigation_bar: ^1.0.3
+  cloud_firestore: ^4.17.2
+  image_picker: ^1.1.1
+  firebase_storage: ^11.7.6
 
 
 flutter_native_splash:

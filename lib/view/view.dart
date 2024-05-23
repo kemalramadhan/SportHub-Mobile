@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:sporthub/common/color_extension.dart';
 import 'package:sporthub/customShapeAppBar.dart';
 import 'package:sporthub/view/home/home_page.dart';
-import 'package:sporthub/view/profile/profile.dart';
+import 'package:sporthub/view/setting_page/settings.dart';
 import 'package:sporthub/view/report/report.dart';
 import 'package:sporthub/view/workout/workout.dart';
 
